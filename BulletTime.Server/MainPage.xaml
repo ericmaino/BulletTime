@@ -1,0 +1,73 @@
+﻿<Page
+    x:Class="BulletTime.Server.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BulletTime.Server"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:BulletTime.ViewModels"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <vm:ServerViewModel />
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="150" />
+        </Grid.RowDefinitions>
+
+        <ListView ItemsSource="{Binding Cameras.View}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapGrid Orientation="Horizontal"></WrapGrid>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="200" Width="200" Background="Gray" Padding="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Grid Background="White" Grid.Row="0">
+                            <Image Source="{Binding View.Value}" />
+                        </Grid>
+                        <Viewbox Grid.Row="1">
+                            <TextBlock Text="{Binding IPAddress}" />
+                        </Viewbox>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35" />
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" ItemsSource="{Binding Resolutions.View}" SelectedItem="{Binding SelectedResolution.Value, Mode=TwoWay}"  />
+            <Button Grid.Row="1" Background="Red" Foreground="Black" Command="{Binding Register}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Viewbox>
+                    <TextBlock>Get Cameras</TextBlock>
+                </Viewbox>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="1" Background="Pink" Foreground="Black" Command="{Binding Record}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Viewbox>
+                    <TextBlock>Record</TextBlock>
+                </Viewbox>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="2" Background="DarkSeaGreen" Foreground="Black" Click="ButtonBase_OnClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Viewbox>
+                    <TextBlock>Map</TextBlock>
+                </Viewbox>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

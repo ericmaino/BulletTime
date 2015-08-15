@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="BulletTime.Server.Render"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BulletTime.Server"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <local:RenderViewModel/>
+    </Page.DataContext>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="115" />
+        </Grid.RowDefinitions>
+        <Image x:Name="Animation" />
+        <Button Click="GoHome" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Viewbox>
+                <TextBlock>Go Home</TextBlock>
+            </Viewbox>
+        </Button>
+    </Grid>
+</Page>

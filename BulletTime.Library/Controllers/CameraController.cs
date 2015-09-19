@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -72,7 +73,9 @@ namespace BulletTime.Controllers
                 result = _model.Media.VideoDeviceController.GetAvailableMediaStreamProperties(MediaStreamType.VideoPreview)
                     .Cast<VideoEncodingProperties>()
                     .Where(v => v.Subtype.Equals("YUY2", StringComparison.OrdinalIgnoreCase))
-                    .Where(v => GetHertz(v.FrameRate) > 10)
+                    .Where(v => GetHertz(v.FrameRate) == 20)
+                    .Where(v => v.Width > 400)
+                    .Where(v => v.Width < 600)
                     .OrderBy(r => r.Width)
                     .ThenBy(r => r.Height)
                     .ThenBy(r => GetHertz(r.FrameRate))
@@ -86,7 +89,7 @@ namespace BulletTime.Controllers
 
         private uint GetHertz(MediaRatio ratio)
         {
-            return ratio.Numerator/ratio.Denominator;
+            return ratio.Numerator / ratio.Denominator;
         }
 
         public async Task StartPreview()
@@ -122,6 +125,7 @@ namespace BulletTime.Controllers
                 }
                 catch (Exception)
                 {
+                    Debug.WriteLine("Failed to start preview");
                 }
             }
         }

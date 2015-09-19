@@ -156,6 +156,7 @@
     <Compile Include="UI\Property.cs" />
     <Compile Include="UI\PropertyHost.cs" />
     <Compile Include="RemoteControl\CameraClientRemoteControl.cs" />
+    <Compile Include="UI\StateConverter.cs" />
     <Compile Include="ViewModels\CameraClientViewModel.cs" />
     <Compile Include="Models\VideoCameraModel.cs" />
     <Compile Include="Models\VideoCameraResolutionModel.cs" />

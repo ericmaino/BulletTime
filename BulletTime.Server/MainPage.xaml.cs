@@ -27,6 +27,12 @@ namespace BulletTime.Server
         public MainPage()
         {
             this.InitializeComponent();
+            this.Loaded += MainPage_Loaded;
+        }
+
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            ((ServerViewModel)this.DataContext).Register.Execute(null);
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

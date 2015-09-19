@@ -91,7 +91,7 @@ namespace BulletTime.Controllers
             if (action != null)
             {
                 var comparer = new ResolutionComparer();
-                var cameras = _cameras.Values.ToList();
+                var cameras = _cameras.Keys.OrderBy(x => x).Select(key => _cameras[key]).ToList();
 
                 IEnumerable<RemoteResolutionModel> resolutions = null;
 

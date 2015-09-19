@@ -3,6 +3,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage.Streams;
 using BulletTime.Networking.Formatters;
+using BulletTime.RemoteControl;
+using System.Diagnostics;
 
 namespace BulletTime.Networking
 {
@@ -22,23 +24,41 @@ namespace BulletTime.Networking
                 writer.WriteUInt32(dataFrame.ViewBuffer.Length);
                 writer.WriteBytes(bytes);
                 writer.WriteBuffer(dataFrame.ViewBuffer);
+                writer.WriteInt32((int)dataFrame.State);
 
                 await Task.Yield();
             }
 
             public async Task<CameraHeartBeat> Read(IDataReader reader)
             {
-                await reader.LoadAsync(sizeof (int)*2);
+                CameraClientState state = CameraClientState.Idle;
+                await reader.LoadAsync(sizeof(int) * 2);
                 var strSize = reader.ReadInt32();
                 var bufferSize = reader.ReadUInt32();
-                await reader.LoadAsync((uint) (sizeof (byte)*strSize));
+                await reader.LoadAsync((uint)(sizeof(byte) * strSize));
                 var bytes = new byte[strSize];
                 reader.ReadBytes(bytes);
                 var cameraId = Encoding.UTF8.GetString(bytes);
-                await reader.LoadAsync(bufferSize);
-                var buffer = reader.ReadBuffer(bufferSize);
 
-                return new CameraHeartBeat(cameraId, buffer);
+                IBuffer buffer = new Windows.Storage.Streams.Buffer(0);
+
+                if (bufferSize > 0)
+                {
+                    await reader.LoadAsync(bufferSize);
+                    buffer = reader.ReadBuffer(bufferSize);
+                }
+
+                try
+                {
+                    await reader.LoadAsync(sizeof(int));
+                    state = (CameraClientState)reader.ReadInt32();
+                    Debug.WriteLine(state);
+                }
+                catch
+                {
+                }
+
+                return new CameraHeartBeat(cameraId, buffer, state);
             }
         }
     }

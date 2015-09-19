@@ -6,18 +6,25 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:BulletTime.ViewModels"
+    xmlns:ui="using:BulletTime.UI"
     mc:Ignorable="d">
     <Page.DataContext>
         <vm:ServerViewModel />
     </Page.DataContext>
+    <Page.Resources>
+        <ui:StateConverter x:Name="StateConverter" />
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="150" />
             <RowDefinition Height="*" />
             <RowDefinition Height="150" />
         </Grid.RowDefinitions>
-
-        <ListView ItemsSource="{Binding Cameras.View}">
+        <Viewbox>
+            <TextBlock>http://aka.ms/BulletTime</TextBlock>
+        </Viewbox>
+        <ListView ItemsSource="{Binding Cameras.View}" Grid.Row="1">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapGrid Orientation="Horizontal"></WrapGrid>
@@ -25,7 +32,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="200" Width="200" Background="Gray" Padding="2">
+                    <Grid Height="200" Width="200" Background="{Binding CameraState.Value, Converter={StaticResource StateConverter}}" Padding="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="30" />
@@ -41,7 +48,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="35" />
                 <RowDefinition Height="*" />

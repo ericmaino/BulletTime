@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using Windows.Media.Devices;
 using Windows.UI.Xaml.Media.Imaging;
+using BulletTime.RemoteControl;
 using BulletTime.UI;
 using Newtonsoft.Json;
 
@@ -20,6 +22,7 @@ namespace BulletTime.Models
         public RemoteCameraModel()
         {
             View = this.NewProperty(x => x.View);
+            CameraState = this.NewProperty(x => x.CameraState);
         }
 
         [JsonIgnore]
@@ -31,9 +34,11 @@ namespace BulletTime.Models
         [JsonIgnore]
         public Property<WriteableBitmap> View { get; }
 
+        [JsonIgnore]
+        public Property<CameraClientState> CameraState { get; }
+
         public IEnumerable<byte> AddressAsBytes { get; set; }
         public IEnumerable<RemoteResolutionModel> Resolutions { get; set; }
-        public RemoteCameraState State { get; set; }
         public int Port { get; set; }
     }
 }

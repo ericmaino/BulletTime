@@ -153,21 +153,27 @@ namespace BulletTime.Controllers
             {
                 _recording.Set();
 
-                if (!IsInPreview)
+                try
                 {
-                    await StartPreview();
+
+                    if (!IsInPreview)
+                    {
+                        await StartPreview();
+                    }
+
+                    var media = _model.Media;
+
+                    while (frameQueue.Count < framesToRecord)
+                    {
+                        var stream = new InMemoryRandomAccessStream();
+                        await media.CapturePhotoToStreamAsync(ImageEncodingProperties.CreateJpeg(), stream);
+                        frameQueue.Enqueue(stream);
+                    }
                 }
-
-                var media = _model.Media;
-
-                while (frameQueue.Count < framesToRecord)
+                finally
                 {
-                    var stream = new InMemoryRandomAccessStream();
-                    await media.CapturePhotoToStreamAsync(ImageEncodingProperties.CreateJpeg(), stream);
-                    frameQueue.Enqueue(stream);
+                    _recording.Reset();
                 }
-
-                _recording.Reset();
             }
 
             return frameQueue;

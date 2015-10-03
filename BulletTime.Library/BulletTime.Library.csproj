@@ -113,6 +113,10 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Rendering\ImageLoader.cs" />
+    <Compile Include="Models\MappedFrame.cs" />
+    <Compile Include="PointExtensions.cs" />
+    <Compile Include="Rendering\PointMapper.cs" />
     <Compile Include="Networking\PingUtility.cs" />
     <Compile Include="Controllers\ResolutionComparer.cs" />
     <Compile Include="Models\RemoteCameraComparer.cs" />

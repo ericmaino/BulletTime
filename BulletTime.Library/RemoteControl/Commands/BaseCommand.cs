@@ -27,7 +27,7 @@ namespace BulletTime.RemoteControl.Commands
 
         public abstract string Serialize();
 
-        protected string Serialize<T>(T data)
+        protected string Serialize<TInput>(TInput data)
         {
             try
             {
@@ -38,11 +38,11 @@ namespace BulletTime.RemoteControl.Commands
             }
         }
 
-        protected T Deserialize<T>(string data)
+        protected TOutput Deserialize<TOutput>(string data)
         {
             try
             {
-                return JsonConvert.DeserializeObject<T>(data);
+                return JsonConvert.DeserializeObject<TOutput>(data);
             }
             finally
             {

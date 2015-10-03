@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Scratch
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var calc = new NetworkCalculator(IPAddress.Parse("10.121.208.214"), 23);
             Console.WriteLine(calc.Network);
@@ -38,7 +34,7 @@ namespace Scratch
 
         public IPAddress Network { get; }
         public IPAddress LocalAddress { get; private set; }
-        public IPAddress BroadcastAddress { get; private set; }
+        public IPAddress BroadcastAddress { get; }
 
         public IEnumerable<IPAddress> NetworkAddresses
         {

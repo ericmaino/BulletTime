@@ -7,18 +7,18 @@ namespace BulletTime.Rendering
 {
     public class PointMapper
     {
-        private readonly int height;
-        private readonly int width;
         private readonly int cameraCount;
         private readonly int frameCount;
         private readonly IList<MappedFrame> frames;
+        private readonly int height;
+        private readonly int width;
 
         public PointMapper(double canvasHeight, double canvasWidth, int cameraCount, int expectedFrames)
         {
             frames = new List<MappedFrame>();
             this.cameraCount = cameraCount;
-            height = (int)canvasHeight;
-            width = (int)canvasWidth;
+            height = (int) canvasHeight;
+            width = (int) canvasWidth;
             frameCount = expectedFrames;
         }
 
@@ -31,11 +31,11 @@ namespace BulletTime.Rendering
 
         public bool AddPoint(Point currentPoint)
         {
-            bool result = false;
+            var result = false;
 
             if (PreviousFrame == null)
             {
-                PreviousFrame = new MappedFrame()
+                PreviousFrame = new MappedFrame
                 {
                     Point = currentPoint
                 };
@@ -49,15 +49,15 @@ namespace BulletTime.Rendering
                 var x2 = currentPoint.X;
                 var y2 = currentPoint.Y;
 
-                var frame = (int)((x2 * frameCount) / width) + 2;
-                var camera = (int)((y2 * cameraCount) / height);
+                var frame = (int) ((x2*frameCount)/width) + 2;
+                var camera = (int) ((y2*cameraCount)/height);
                 var distance = PreviousFrame.Point.GetDistance(currentPoint);
 
                 if (frame != PreviousFrame.Frame || camera != PreviousFrame.Camera)
                 {
-                    var mappedFrame = new MappedFrame()
+                    var mappedFrame = new MappedFrame
                     {
-                        Speed = distance / (DateTime.UtcNow - PreviousFrame.MappedTime).TotalSeconds,
+                        Speed = distance/(DateTime.UtcNow - PreviousFrame.MappedTime).TotalSeconds,
                         ViewTime = (DateTime.UtcNow - PreviousFrame.MappedTime).TotalMilliseconds,
                         Point = currentPoint,
                         Camera = camera,
@@ -72,7 +72,5 @@ namespace BulletTime.Rendering
 
             return result;
         }
-
-
     }
 }

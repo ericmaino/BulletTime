@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using BulletTime.Models;
 using BulletTime.ViewModels;
 
@@ -26,19 +15,19 @@ namespace BulletTime.Server
     {
         public MainPage()
         {
-            this.InitializeComponent();
-            this.Loaded += MainPage_Loaded;
+            InitializeComponent();
+            Loaded += MainPage_Loaded;
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            ((ServerViewModel)this.DataContext).Register.Execute(null);
+            ((ServerViewModel) DataContext).Register.Execute(null);
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            MapViewModel.CurrentCameras = ((ServerViewModel)this.DataContext).Cameras.Source as IEnumerable<RemoteCameraModel>;
-            this.Frame.Navigate(typeof(MapPath));
+            MapViewModel.CurrentCameras = ((ServerViewModel) DataContext).Cameras.Source as IEnumerable<RemoteCameraModel>;
+            Frame.Navigate(typeof (MapPath));
         }
     }
 }

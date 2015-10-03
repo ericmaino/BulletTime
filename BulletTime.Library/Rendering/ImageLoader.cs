@@ -22,7 +22,7 @@ namespace BulletTime.Rendering
         {
             _images = new Dictionary<string, WriteableBitmap>(StringComparer.OrdinalIgnoreCase);
             _camers = cameras.ToList().AsReadOnly();
-            this._folder = folder;
+            _folder = folder;
         }
 
         public static async Task<ImageLoader> Create(IEnumerable<RemoteCameraModel> cameras)
@@ -42,7 +42,7 @@ namespace BulletTime.Rendering
                 var file = await cameraFolder.OpenStreamForReadAsync($"{frame.Frame:D2}.jpg");
                 var decoder = await BitmapDecoder.CreateAsync(file.AsRandomAccessStream());
                 var f = await decoder.GetFrameAsync(0);
-                var bmp = new WriteableBitmap((int)f.PixelWidth, (int)f.PixelHeight);
+                var bmp = new WriteableBitmap((int) f.PixelWidth, (int) f.PixelHeight);
                 await bmp.SetSourceAsync(file.AsRandomAccessStream());
                 _images[key] = bmp;
             }

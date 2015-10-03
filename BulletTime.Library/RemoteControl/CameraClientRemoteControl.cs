@@ -33,10 +33,8 @@ namespace BulletTime.RemoteControl
         private readonly CommandListener _listener;
         private readonly CameraClientViewModel _model;
         private readonly PingUtility _ping;
-        private IPAddress _server;
         private int _port;
-
-        private CameraClientState State { get; set; }
+        private IPAddress _server;
 
         public CameraClientRemoteControl(CameraClientViewModel model, ClientController camera)
         {
@@ -52,6 +50,8 @@ namespace BulletTime.RemoteControl
             _listener.RegisterHandler<EnableHeartbeatCommand, EnableHeartbeatCommand>(EnableHeartbeat);
             _listener.RegisterHandler<UpdateResolutionCommand, RemoteResolutionModel>(UpdateResolution);
         }
+
+        private CameraClientState State { get; set; }
 
         private async Task _camera_RecordingCompleted()
         {
@@ -132,10 +132,7 @@ namespace BulletTime.RemoteControl
                 State = CameraClientState.Idle;
             };
 
-            await Dispatch(() =>
-            {
-                _model.Record.Execute(null);
-            });
+            await Dispatch(() => { _model.Record.Execute(null); });
         }
 
         private async Task UpdateResolution(RemoteResolutionModel resolution)
@@ -147,7 +144,7 @@ namespace BulletTime.RemoteControl
 
             await Dispatch(() =>
             {
-                var found = ((IEnumerable<VideoCameraResolutionModel>)_model.Resolutions.Source).FirstOrDefault(x => x.ToString() == resolution.Name);
+                var found = ((IEnumerable<VideoCameraResolutionModel>) _model.Resolutions.Source).FirstOrDefault(x => x.ToString() == resolution.Name);
 
                 if (found != null)
                 {

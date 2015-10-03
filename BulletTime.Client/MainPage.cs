@@ -1,7 +1,5 @@
-﻿using System.Threading.Tasks;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using BulletTime.Controllers;
 using BulletTime.UI;
 using BulletTime.ViewModels;
 
@@ -19,12 +17,12 @@ namespace UniversalScratch
         public MainPage()
         {
             InitializeComponent();
-            this.Loaded += MainPage_Loaded;
+            Loaded += MainPage_Loaded;
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            model = ((CameraClientViewModel)this.DataContext);
+            model = ((CameraClientViewModel) DataContext);
             model.Initialize();
             model.SelectedResolution.Changed += SelectedResolution_Changed;
         }

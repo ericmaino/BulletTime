@@ -89,7 +89,7 @@ namespace BulletTime.Controllers
 
         private uint GetHertz(MediaRatio ratio)
         {
-            return ratio.Numerator / ratio.Denominator;
+            return ratio.Numerator/ratio.Denominator;
         }
 
         public async Task StartPreview()
@@ -155,7 +155,6 @@ namespace BulletTime.Controllers
 
                 try
                 {
-
                     if (!IsInPreview)
                     {
                         await StartPreview();

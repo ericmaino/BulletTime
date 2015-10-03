@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
@@ -16,7 +12,7 @@ namespace BulletTime.UI
         {
             if (value is CameraClientState)
             {
-                switch ((CameraClientState)value)
+                switch ((CameraClientState) value)
                 {
                     case CameraClientState.Idle:
                         return new SolidColorBrush(Colors.Gray);

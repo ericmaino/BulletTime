@@ -27,7 +27,7 @@
         <ListView ItemsSource="{Binding Cameras.View}" Grid.Row="1">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapGrid Orientation="Horizontal"></WrapGrid>
+                    <WrapGrid Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>

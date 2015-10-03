@@ -61,7 +61,7 @@ namespace BulletTime.ViewModels
         {
             await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
-                var cameras = (IEnumerable<RemoteCameraModel>)Cameras.Source;
+                var cameras = (IEnumerable<RemoteCameraModel>) Cameras.Source;
                 var camera = cameras.FirstOrDefault(x => x.IPAddress.ToString() == heartbeat.CameraId);
 
                 if (camera != null)
@@ -70,7 +70,7 @@ namespace BulletTime.ViewModels
                     {
                         var decoder = await BitmapDecoder.CreateAsync(heartbeat.ViewBuffer.AsStream().AsRandomAccessStream());
                         var f = await decoder.GetFrameAsync(0);
-                        var bmp = new WriteableBitmap((int)f.PixelWidth, (int)f.PixelHeight);
+                        var bmp = new WriteableBitmap((int) f.PixelWidth, (int) f.PixelHeight);
                         await bmp.SetSourceAsync(heartbeat.ViewBuffer.AsStream().AsRandomAccessStream());
                         camera.View.Value = bmp;
                     }

@@ -113,6 +113,9 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\VideoFrameListView.xaml.cs">
+      <DependentUpon>VideoFrameListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Rendering\ImageLoader.cs" />
     <Compile Include="Models\MappedFrame.cs" />
     <Compile Include="PointExtensions.cs" />
@@ -174,7 +177,12 @@
     <Compile Include="Networking\UploadListener.cs" />
     <Content Include="Properties\BulletTime.Library.rd.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Controls\VideoFrameListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

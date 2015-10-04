@@ -7,10 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:BulletTime.ViewModels"
     xmlns:ui="using:BulletTime.UI"
-    mc:Ignorable="d">
-    <Page.DataContext>
-        <vm:ServerViewModel />
-    </Page.DataContext>
+    mc:Ignorable="d" DataContext="{Binding Source={StaticResource ApplicationModel},Path=ServerViewModel}">
     <Page.Resources>
         <ui:StateConverter x:Name="StateConverter" />
     </Page.Resources>

@@ -21,13 +21,13 @@ namespace BulletTime.Server
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            ((ServerViewModel) DataContext).Register.Execute(null);
+            ((ServerViewModel)DataContext).Register.Execute(null);
         }
 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private async void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            MapViewModel.CurrentCameras = ((ServerViewModel) DataContext).Cameras.Source as IEnumerable<RemoteCameraModel>;
-            Frame.Navigate(typeof (MapPath));
+            await ApplicationViewModel.Current.InitializeMapViewModel();
+            Frame.Navigate(typeof(MapPath));
         }
     }
 }

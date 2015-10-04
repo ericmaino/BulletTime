@@ -7,23 +7,15 @@ namespace BulletTime.ViewModels
 {
     public class MapViewModel
     {
-        public MapViewModel()
+        public MapViewModel(IEnumerable<MapCameraViewModel> cameras, int frameCount)
         {
+            var cameraList = cameras.ToList();
             Cameras = new CollectionViewSource();
-            IEnumerable<MapCameraViewModel> query = null;
-
-            if (CurrentCameras != null)
-            {
-                query = CurrentCameras.Select(x => new MapCameraViewModel(x));
-            }
-
-            var y = query.ToList();
-            Cameras.Source = y;
-            CameraCount = y.Count;
-            FrameCount = 30;
+            Cameras.Source = cameraList;
+            CameraCount = cameraList.Count;
+            FrameCount = frameCount;
         }
 
-        public static IEnumerable<RemoteCameraModel> CurrentCameras { get; set; }
         public int CameraCount { get; set; }
         public int FrameCount { get; set; }
         public CollectionViewSource Cameras { get; set; }

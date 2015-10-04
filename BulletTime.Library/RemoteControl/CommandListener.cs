@@ -50,7 +50,7 @@ namespace BulletTime.RemoteControl
             });
         }
 
-        internal async Task Initialize()
+        public async Task Initialize()
         {
             await _listener.Bind();
         }

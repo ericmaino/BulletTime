@@ -18,13 +18,6 @@ using StreamBuffer = Windows.Storage.Streams.Buffer;
 
 namespace BulletTime.RemoteControl
 {
-    public enum CameraClientState
-    {
-        Idle,
-        Preparing,
-        Recording,
-        Uploading
-    }
 
     public class CameraClientRemoteControl
     {
@@ -144,7 +137,7 @@ namespace BulletTime.RemoteControl
 
             await Dispatch(() =>
             {
-                var found = ((IEnumerable<VideoCameraResolutionModel>) _model.Resolutions.Source).FirstOrDefault(x => x.ToString() == resolution.Name);
+                var found = ((IEnumerable<VideoCameraResolutionModel>)_model.Resolutions.Source).FirstOrDefault(x => x.ToString() == resolution.Name);
 
                 if (found != null)
                 {

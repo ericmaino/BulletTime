@@ -7,8 +7,8 @@
     <ProjectGuid>{78C45B04-46EE-4F24-82BE-03C9B577637D}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UniversalScratch</RootNamespace>
-    <AssemblyName>UniversalScratch</AssemblyName>
+    <RootNamespace>BulletTime</RootNamespace>
+    <AssemblyName>BulletTime.Client</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
@@ -107,6 +107,8 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CameraClientRemoteControl.cs" />
+    <Compile Include="ViewModels\CameraClientViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

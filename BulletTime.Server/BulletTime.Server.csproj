@@ -7,7 +7,7 @@
     <ProjectGuid>{71F8C05D-A1FC-48C7-AAEF-825DCF255D0B}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BulletTime.Server</RootNamespace>
+    <RootNamespace>BulletTime</RootNamespace>
     <AssemblyName>BulletTime.Server</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
@@ -114,6 +114,9 @@
     <Compile Include="Render.xaml.cs">
       <DependentUpon>Render.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MapCameraViewModel.cs" />
+    <Compile Include="ViewModels\MapViewModel.cs" />
+    <Compile Include="ViewModels\ServerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

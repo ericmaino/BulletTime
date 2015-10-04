@@ -21,22 +21,28 @@ namespace BulletTime.Controls
 
         public void InvokePropertyChanged(string propertyName)
         {
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            var changed = PropertyChanged;
+
+            if (changed != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
+
 
         private void MyListView_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            ItemHeight.Value = ActualHeight/Items.Count;
+            ItemHeight.Value = ActualHeight / Items.Count;
         }
 
         private void MyListView_Loaded(object sender, RoutedEventArgs e)
         {
-            ItemHeight.Value = ActualHeight/Items.Count;
+            ItemHeight.Value = ActualHeight / Items.Count;
         }
 
         private void ItemsChanged(IObservableVector<object> sender, IVectorChangedEventArgs @event)
         {
-            ItemHeight.Value = ActualHeight/Items.Count;
+            ItemHeight.Value = ActualHeight / Items.Count;
         }
     }
 }

@@ -95,7 +95,7 @@ namespace BulletTime.Server
         {
             var images = new List<WriteableBitmap>();
             var cameras = (IEnumerable<RemoteCameraModel>)ApplicationViewModel.Current.ServerViewModel.Cameras.Source;
-            var loader = await ImageLoader.Create(cameras);
+            var loader = new ImageCache(cameras);
 
             foreach (var frame in Map.MappedFrames)
             {

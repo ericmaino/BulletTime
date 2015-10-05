@@ -104,7 +104,6 @@ namespace BulletTime.Controllers
                     }
                     catch
                     {
-
                     }
                 }
 

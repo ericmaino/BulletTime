@@ -100,21 +100,22 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App.xaml.cs">
+    <Compile Include="App.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="ApplicationViewModel.cs" />
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="MainPage.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MapPath.xaml.cs">
+    <Compile Include="MapPath.cs">
       <DependentUpon>MapPath.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Render.xaml.cs">
+    <Compile Include="Render.cs">
       <DependentUpon>Render.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Scratch.xaml.cs">
+    <Compile Include="RenderViewModel.cs" />
+    <Compile Include="Scratch.cs">
       <DependentUpon>Scratch.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MapCameraViewModel.cs" />

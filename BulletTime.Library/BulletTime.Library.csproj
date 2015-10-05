@@ -113,10 +113,11 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\VideoFrameListView.xaml.cs">
+    <Compile Include="Controls\VideoFrameListView.cs">
       <DependentUpon>VideoFrameListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="RemoteControl\CameraClientState.cs" />
+    <Compile Include="Rendering\ImageCache.cs" />
     <Compile Include="Rendering\ImageLoader.cs" />
     <Compile Include="Models\MappedFrame.cs" />
     <Compile Include="PointExtensions.cs" />

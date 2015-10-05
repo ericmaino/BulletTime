@@ -29,20 +29,19 @@ namespace BulletTime.Controls
             }
         }
 
-
         private void MyListView_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            ItemHeight.Value = ActualHeight / Items.Count;
+            ItemHeight.Value = ActualHeight/Items.Count;
         }
 
         private void MyListView_Loaded(object sender, RoutedEventArgs e)
         {
-            ItemHeight.Value = ActualHeight / Items.Count;
+            ItemHeight.Value = ActualHeight/Items.Count;
         }
 
         private void ItemsChanged(IObservableVector<object> sender, IVectorChangedEventArgs @event)
         {
-            ItemHeight.Value = ActualHeight / Items.Count;
+            ItemHeight.Value = ActualHeight/Items.Count;
         }
     }
 }

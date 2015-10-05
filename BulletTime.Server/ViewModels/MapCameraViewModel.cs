@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using Windows.UI;
-using Windows.UI.Xaml.Media;
-using BulletTime.Models;
-using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Data;
-using System.Linq;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
+using BulletTime.Models;
 
 namespace BulletTime.ViewModels
 {
@@ -23,7 +22,7 @@ namespace BulletTime.ViewModels
 
         public MapCameraViewModel(RemoteCameraModel model)
         {
-            var i = index++ % colors.Count;
+            var i = index++%colors.Count;
             Background = new SolidColorBrush(colors[i]);
             Name = model.IPAddress.ToString();
             Frames = new CollectionViewSource();
@@ -38,7 +37,7 @@ namespace BulletTime.ViewModels
         }
 
         public Visibility FramesVisible { get; set; }
-        public CollectionViewSource Frames { get; private set; }
+        public CollectionViewSource Frames { get; }
         public Brush Background { get; private set; }
         public string Name { get; private set; }
     }

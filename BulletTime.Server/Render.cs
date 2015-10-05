@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Imaging;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -42,28 +40,5 @@ namespace BulletTime.Server
         {
             Frame.Navigate(typeof (MainPage));
         }
-    }
-
-    public class RenderViewModel
-    {
-        static RenderViewModel()
-        {
-            Instance = new RenderViewModel();
-        }
-
-        public RenderViewModel()
-        {
-            if (Instance != null)
-            {
-                Images = Instance.Images;
-            }
-            else
-            {
-                Images = new List<WriteableBitmap>();
-            }
-        }
-
-        public static RenderViewModel Instance { get; set; }
-        public IList<WriteableBitmap> Images { get; set; }
     }
 }

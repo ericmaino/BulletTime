@@ -28,10 +28,7 @@ namespace BulletTime.Networking
 
         public async Task Broadcast(IPAddress localAddress, int port)
         {
-            foreach (var address in _network.NetworkAddresses)
-            {
-                await _client.SendMessage(address, string.Join(":", localAddress, port));
-            }
+            await _client.SendMessage(_network.BroadcastAddress, string.Join(":", localAddress, port));
         }
 
         public async Task Bind()

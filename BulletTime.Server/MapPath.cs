@@ -11,9 +11,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Shapes;
+using BulletTime.Models;
 using BulletTime.Rendering;
 using BulletTime.ViewModels;
-using BulletTime.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -35,7 +35,7 @@ namespace BulletTime.Server
 
         private void MapPath_Loaded(object sender, RoutedEventArgs e)
         {
-            var model = ((MapViewModel)DataContext);
+            var model = ((MapViewModel) DataContext);
             Map = new PointMapper(InkCanvas.ActualHeight, InkCanvas.ActualWidth, model.CameraCount, 30);
         }
 
@@ -94,26 +94,26 @@ namespace BulletTime.Server
         private async void Play(object sender, RoutedEventArgs e)
         {
             var images = new List<WriteableBitmap>();
-            var cameras = (IEnumerable<RemoteCameraModel>)ApplicationViewModel.Current.ServerViewModel.Cameras.Source;
+            var cameras = (IEnumerable<RemoteCameraModel>) ApplicationViewModel.Current.ServerViewModel.Cameras.Source;
             var loader = new ImageCache(cameras);
 
             foreach (var frame in Map.MappedFrames)
             {
                 var image = await loader.GetImage(frame);
 
-                for (var i = 0; i < frame.ViewTime / 33; i++)
+                for (var i = 0; i < frame.ViewTime/33; i++)
                 {
                     images.Add(image);
                 }
             }
 
             RenderViewModel.Instance.Images = images;
-            Frame.Navigate(typeof(Render));
+            Frame.Navigate(typeof (Render));
         }
 
         private void GoHome(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainPage));
+            Frame.Navigate(typeof (MainPage));
         }
     }
 }

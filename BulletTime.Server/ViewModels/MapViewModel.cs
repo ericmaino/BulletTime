@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Windows.UI.Xaml.Data;
-using BulletTime.Models;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
 
 namespace BulletTime.ViewModels
 {

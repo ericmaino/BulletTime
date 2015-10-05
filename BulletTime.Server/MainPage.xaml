@@ -57,7 +57,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ComboBox Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" ItemsSource="{Binding Resolutions.View}" SelectedItem="{Binding SelectedResolution.Value, Mode=TwoWay}"  />
+            <ComboBox Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" ItemsSource="{Binding Resolutions.View}" SelectedItem="{Binding SelectedResolution.Value, Mode=TwoWay}"  />
             <Button Grid.Row="1" Background="LightBlue" Foreground="Black" Command="{Binding Register}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Viewbox>
                     <TextBlock>Get Cameras</TextBlock>

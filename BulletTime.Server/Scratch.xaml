@@ -12,7 +12,6 @@
         <CollectionViewSource x:Name="Images" x:Key="Images" />
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <control:VideoFrameListView Background="Gainsboro" x:Name="Test" Width="500" Height="100" ItemsSource="{Binding Source={StaticResource Images}}">
-        </control:VideoFrameListView>
+        <control:VideoFrameListView Background="Gainsboro" x:Name="Test" Width="500" Height="100" ItemsSource="{Binding Source={StaticResource Images}}" />
     </Grid>
 </Page>

@@ -1,4 +1,5 @@
 ﻿using BulletTime.Models;
+using BulletTime.Rendering;
 using BulletTime.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Data;
 
 namespace BulletTime.Server
 {
@@ -46,6 +48,21 @@ namespace BulletTime.Server
             }
 
             this.MapViewModel = new MapViewModel(cameras, 30);
+            await Task.Yield();
+        }
+
+        public async Task InitializeMapViewModelWithFrames()
+        {
+            var cameras = new List<MapCameraViewModel>();
+
+            foreach (var camera in (IEnumerable<RemoteCameraModel>)ServerViewModel.Cameras.Source)
+            {
+                var loader = await ImageLoader.Create(camera);
+                cameras.Add(new MapCameraViewModel(camera, await loader.GetFrameImages()));
+            }
+
+            this.MapViewModel = new MapViewModel(cameras, 30);
+            this.MapViewModel.CanvasVisible = Visibility.Collapsed;
             await Task.Yield();
         }
     }

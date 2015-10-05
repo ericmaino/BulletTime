@@ -29,5 +29,11 @@ namespace BulletTime.Server
             await ApplicationViewModel.Current.InitializeMapViewModel();
             Frame.Navigate(typeof(MapPath));
         }
+
+        private async void ShowMapWithFrames(object sender, RoutedEventArgs e)
+        {
+            await ApplicationViewModel.Current.InitializeMapViewModelWithFrames();
+            Frame.Navigate(typeof(MapPath));
+        }
     }
 }

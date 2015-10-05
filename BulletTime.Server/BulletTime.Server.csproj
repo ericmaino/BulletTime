@@ -114,6 +114,9 @@
     <Compile Include="Render.xaml.cs">
       <DependentUpon>Render.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Scratch.xaml.cs">
+      <DependentUpon>Scratch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\MapCameraViewModel.cs" />
     <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="ViewModels\ServerViewModel.cs" />
@@ -147,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Render.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scratch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

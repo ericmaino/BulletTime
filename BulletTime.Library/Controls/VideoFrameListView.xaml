@@ -9,7 +9,7 @@
     d:DesignHeight="100"
     d:DesignWidth="400" x:Name="BaseControl">
     <Grid Background="{Binding ElementName=BaseControl,Path=Background}">
-        <ListView x:Name="ThisView" Background="Transparent">
+        <ListView x:Name="ThisView" Background="Transparent" SelectionMode="Multiple">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsStackPanel Background="Transparent" Orientation="Horizontal" Margin="0" GroupPadding="0" />
@@ -17,14 +17,14 @@
             </ListView.ItemsPanel>
             <ListView.Template>
                 <ControlTemplate TargetType="ListView">
-                    <!--<ScrollViewer Background="Transparent" HorizontalScrollMode="Auto" VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">-->
-                    <ItemsPresenter />
-                    <!--</ScrollViewer>-->
+                    <ScrollViewer Background="Transparent" HorizontalScrollMode="Auto" VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
+                        <ItemsPresenter />
+                    </ScrollViewer>
                 </ControlTemplate>
             </ListView.Template>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid MinHeight="100" MinWidth="133" Margin="0" Padding="0" Width="{Binding ElementName=ThisView,Path=ItemWidth}">
+                    <Grid Margin="0" Padding="0" Width="{Binding ElementName=ThisView,Path=ItemWidth}">
                         <Image Source="{Binding}" MinHeight="1" MinWidth="1" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"  />
                     </Grid>
                 </DataTemplate>

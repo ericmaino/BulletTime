@@ -13,7 +13,10 @@ namespace BulletTime.Models
         public RemoteCameraModel(IPAddress endPoint, int port, IEnumerable<VideoCameraResolutionModel> resolutions)
             : this()
         {
-            Resolutions = resolutions.Select(x => new RemoteResolutionModel(x));
+            if (resolutions != null)
+            {
+                Resolutions = resolutions.Select(x => new RemoteResolutionModel(x));
+            }
             AddressAsBytes = endPoint.GetAddressBytes().ToList();
             Port = port;
         }

@@ -60,13 +60,17 @@ namespace BulletTime.Rendering
             return await GetImage(file.AsRandomAccessStream());
         }
 
-        public async Task<IEnumerable<WriteableBitmap>> GetFrameImages()
+        public async Task<IEnumerable<BitmapImage>> GetFrameImages()
         {
-            var frames = new List<WriteableBitmap>();
+            var frames = new List<BitmapImage>();
             foreach (var file in await _cameraFolder.GetFilesAsync(Windows.Storage.Search.CommonFileQuery.OrderByName))
             {
                 var stream = await file.OpenStreamForReadAsync();
-                frames.Add(await GetImage(stream.AsRandomAccessStream()));
+
+                var img = new BitmapImage();
+                img.DecodePixelWidth = 640;
+                img.SetSource(stream.AsRandomAccessStream());
+                frames.Add(img);
             }
 
             return frames;

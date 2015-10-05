@@ -59,7 +59,7 @@
             <ColumnDefinition Width="150" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <controls:MyListView x:Name="TestView" Grid.Row="0" Grid.ColumnSpan="2" Background="Aqua" SelectionMode="None" ItemsSource="{Binding Cameras.View}" ItemContainerStyle="{StaticResource ListViewItemStyle1}" Style="{StaticResource ListViewStyle1}" >
+        <controls:MyListView x:Name="TestView" Grid.Row="0" Grid.ColumnSpan="2" SelectionMode="None" ItemsSource="{Binding Cameras.View}" ItemContainerStyle="{StaticResource ListViewItemStyle1}" Style="{StaticResource ListViewStyle1}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <controls:MyGrid Background="{Binding Background}" Height="{Binding ElementName=TestView,Path=ItemHeight.Value,Mode=OneWay}" HorizontalAlignment="Stretch" Margin="0" MinHeight="50">
@@ -72,11 +72,14 @@
                                 <TextBlock Text="{Binding Name}" />
                             </Viewbox>
                         </Grid>
+                        <Grid Grid.Column="1" x:Name="ViewGrid">
+                            <controls:VideoFrameListView ItemsSource="{Binding Frames.View}" MaxHeight="75"  Visibility="{Binding FramesVisible}"/>
+                        </Grid>
                     </controls:MyGrid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </controls:MyListView>
-        <Canvas x:Name="InkCanvas" Grid.Row="0" Grid.Column="1"  Background="Transparent" PointerMoved="OnCanvasPointerMoved" />
+        <Canvas x:Name="InkCanvas" Grid.Row="0" Grid.Column="1"  Background="Transparent" PointerMoved="OnCanvasPointerMoved" Visibility="{Binding CanvasVisible}" />
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

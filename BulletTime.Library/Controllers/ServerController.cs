@@ -97,8 +97,15 @@ namespace BulletTime.Controllers
 
                 foreach (var c in cameras)
                 {
-                    resolutions = resolutions ?? c.Resolutions;
-                    resolutions = resolutions.Intersect(c.Resolutions, comparer);
+                    try
+                    {
+                        resolutions = resolutions ?? c.Resolutions;
+                        resolutions = resolutions.Intersect(c.Resolutions, comparer);
+                    }
+                    catch
+                    {
+
+                    }
                 }
 
                 await action(cameras, resolutions);

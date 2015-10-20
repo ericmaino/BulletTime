@@ -102,7 +102,7 @@ namespace BulletTime.ViewModels
 
         private async Task PrepareForRecording()
         {
-            for (var i = 5; i >= 0; i--)
+            for (var i = 1; i >= 0; i--)
             {
                 Countdown.Value = i;
                 CountdownVisible.Value = Visibility.Visible;

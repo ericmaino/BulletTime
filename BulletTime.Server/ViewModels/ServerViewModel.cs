@@ -66,11 +66,17 @@ namespace BulletTime.ViewModels
 
                 if (camera != null)
                 {
-                    var decoder = await BitmapDecoder.CreateAsync(heartbeat.ViewBuffer.AsStream().AsRandomAccessStream());
-                    var f = await decoder.GetFrameAsync(0);
-                    var bmp = new WriteableBitmap((int) f.PixelWidth, (int) f.PixelHeight);
-                    await bmp.SetSourceAsync(heartbeat.ViewBuffer.AsStream().AsRandomAccessStream());
-                    camera.View.Value = bmp;
+                    if (heartbeat.ViewBuffer.Length > 0)
+                    {
+                        var decoder = await BitmapDecoder.CreateAsync(heartbeat.ViewBuffer.AsStream().AsRandomAccessStream());
+                        var f = await decoder.GetFrameAsync(0);
+                        var bmp = new WriteableBitmap((int) f.PixelWidth, (int) f.PixelHeight);
+                        await bmp.SetSourceAsync(heartbeat.ViewBuffer.AsStream().AsRandomAccessStream());
+                        camera.View.Value = bmp;
+                    }
+
+
+                    camera.CameraState.Value = heartbeat.State;
                 }
             });
         }

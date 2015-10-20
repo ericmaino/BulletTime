@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -72,7 +73,9 @@ namespace BulletTime.Controllers
                 result = _model.Media.VideoDeviceController.GetAvailableMediaStreamProperties(MediaStreamType.VideoPreview)
                     .Cast<VideoEncodingProperties>()
                     .Where(v => v.Subtype.Equals("YUY2", StringComparison.OrdinalIgnoreCase))
-                    .Where(v => GetHertz(v.FrameRate) > 10)
+                    .Where(v => GetHertz(v.FrameRate) == 20)
+                    .Where(v => v.Width > 400)
+                    .Where(v => v.Width < 600)
                     .OrderBy(r => r.Width)
                     .ThenBy(r => r.Height)
                     .ThenBy(r => GetHertz(r.FrameRate))
@@ -122,6 +125,7 @@ namespace BulletTime.Controllers
                 }
                 catch (Exception)
                 {
+                    Debug.WriteLine("Failed to start preview");
                 }
             }
         }
@@ -149,21 +153,26 @@ namespace BulletTime.Controllers
             {
                 _recording.Set();
 
-                if (!IsInPreview)
+                try
                 {
-                    await StartPreview();
+                    if (!IsInPreview)
+                    {
+                        await StartPreview();
+                    }
+
+                    var media = _model.Media;
+
+                    while (frameQueue.Count < framesToRecord)
+                    {
+                        var stream = new InMemoryRandomAccessStream();
+                        await media.CapturePhotoToStreamAsync(ImageEncodingProperties.CreateJpeg(), stream);
+                        frameQueue.Enqueue(stream);
+                    }
                 }
-
-                var media = _model.Media;
-
-                while (frameQueue.Count < framesToRecord)
+                finally
                 {
-                    var stream = new InMemoryRandomAccessStream();
-                    await media.CapturePhotoToStreamAsync(ImageEncodingProperties.CreateJpeg(), stream);
-                    frameQueue.Enqueue(stream);
+                    _recording.Reset();
                 }
-
-                _recording.Reset();
             }
 
             return frameQueue;

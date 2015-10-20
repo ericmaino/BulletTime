@@ -7,7 +7,7 @@
     <ProjectGuid>{71F8C05D-A1FC-48C7-AAEF-825DCF255D0B}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BulletTime.Server</RootNamespace>
+    <RootNamespace>BulletTime</RootNamespace>
     <AssemblyName>BulletTime.Server</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
@@ -17,7 +17,8 @@
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>BulletTime.Server_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>Windows10.Dev.temporary.pfx</PackageCertificateKeyFile>
+    <PackageCertificateThumbprint>B6C2AB59CCB49F0388F4A097B1D7DAFFC7404392</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -93,28 +94,38 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="..\Certificates\Windows10.Dev.temporary.pfx">
+      <Link>Windows10.Dev.temporary.pfx</Link>
+    </None>
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App.xaml.cs">
+    <Compile Include="App.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="ApplicationViewModel.cs" />
+    <Compile Include="MainPage.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MapPath.xaml.cs">
+    <Compile Include="MapPath.cs">
       <DependentUpon>MapPath.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Render.xaml.cs">
+    <Compile Include="Render.cs">
       <DependentUpon>Render.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RenderViewModel.cs" />
+    <Compile Include="Scratch.cs">
+      <DependentUpon>Scratch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\MapCameraViewModel.cs" />
+    <Compile Include="ViewModels\MapViewModel.cs" />
+    <Compile Include="ViewModels\ServerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="BulletTime.Server_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
@@ -140,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Render.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scratch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

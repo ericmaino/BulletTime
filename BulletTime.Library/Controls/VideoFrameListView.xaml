@@ -1,0 +1,34 @@
+﻿<UserControl
+    x:Class="BulletTime.Controls.VideoFrameListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BulletTime.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="100"
+    d:DesignWidth="400" x:Name="BaseControl">
+    <Grid Background="{Binding ElementName=BaseControl,Path=Background}">
+        <ListView x:Name="ThisView" Background="Transparent" SelectionMode="Multiple">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel Background="Transparent" Orientation="Horizontal" Margin="0" GroupPadding="0" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.Template>
+                <ControlTemplate TargetType="ListView">
+                    <ScrollViewer Background="Transparent" HorizontalScrollMode="Auto" VerticalScrollMode="Disabled" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
+                        <ItemsPresenter />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ListView.Template>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0" Padding="0" Width="{Binding ElementName=ThisView,Path=ItemWidth}">
+                        <Image Source="{Binding}" MinHeight="1" MinWidth="1" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

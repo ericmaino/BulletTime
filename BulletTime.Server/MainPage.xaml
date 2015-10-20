@@ -6,26 +6,30 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:BulletTime.ViewModels"
-    mc:Ignorable="d">
-    <Page.DataContext>
-        <vm:ServerViewModel />
-    </Page.DataContext>
+    xmlns:ui="using:BulletTime.UI"
+    mc:Ignorable="d" DataContext="{Binding Source={StaticResource ApplicationModel},Path=ServerViewModel}">
+    <Page.Resources>
+        <ui:StateConverter x:Name="StateConverter" />
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="150" />
             <RowDefinition Height="*" />
             <RowDefinition Height="150" />
         </Grid.RowDefinitions>
-
-        <ListView ItemsSource="{Binding Cameras.View}">
+        <Viewbox>
+            <TextBlock>http://aka.ms/BulletTime</TextBlock>
+        </Viewbox>
+        <ListView ItemsSource="{Binding Cameras.View}" Grid.Row="1">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapGrid Orientation="Horizontal"></WrapGrid>
+                    <WrapGrid Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="200" Width="200" Background="Gray" Padding="2">
+                    <Grid Height="200" Width="200" Background="{Binding CameraState.Value, Converter={StaticResource StateConverter}}" Padding="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="30" />
@@ -41,7 +45,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="35" />
                 <RowDefinition Height="*" />
@@ -51,21 +55,27 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ComboBox Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" ItemsSource="{Binding Resolutions.View}" SelectedItem="{Binding SelectedResolution.Value, Mode=TwoWay}"  />
-            <Button Grid.Row="1" Background="Red" Foreground="Black" Command="{Binding Register}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <ComboBox Grid.Row="0" Grid.ColumnSpan="4" HorizontalAlignment="Stretch" ItemsSource="{Binding Resolutions.View}" SelectedItem="{Binding SelectedResolution.Value, Mode=TwoWay}"  />
+            <Button Grid.Row="1" Background="LightBlue" Foreground="Black" Command="{Binding Register}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Viewbox>
                     <TextBlock>Get Cameras</TextBlock>
                 </Viewbox>
             </Button>
-            <Button Grid.Row="1" Grid.Column="1" Background="Pink" Foreground="Black" Command="{Binding Record}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Button Grid.Row="1" Grid.Column="1" Background="Red" Foreground="Black" Command="{Binding Record}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Viewbox>
                     <TextBlock>Record</TextBlock>
                 </Viewbox>
             </Button>
-            <Button Grid.Row="1" Grid.Column="2" Background="DarkSeaGreen" Foreground="Black" Click="ButtonBase_OnClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Button Grid.Row="1" Grid.Column="2" Foreground="Black" Click="ButtonBase_OnClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Viewbox>
                     <TextBlock>Map</TextBlock>
+                </Viewbox>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="3" Background="LightGray" Foreground="Black" Click="ShowMapWithFrames" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Viewbox>
+                    <TextBlock>Frames</TextBlock>
                 </Viewbox>
             </Button>
         </Grid>

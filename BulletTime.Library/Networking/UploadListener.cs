@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using BulletTime.Models;
 using BulletTime.Networking.Formatters;
-using BulletTime.RemoteControl;
 
 namespace BulletTime.Networking
 {

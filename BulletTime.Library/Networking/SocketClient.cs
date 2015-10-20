@@ -39,7 +39,5 @@ namespace BulletTime.Networking
                 await writer.StoreAsync();
             }
         }
-
-        public event Action<T> MessageRecieved;
     }
 }

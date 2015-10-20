@@ -3,7 +3,7 @@
   <Identity Name="6af1a9ce-a5b0-49d4-8215-ffc6c0e0ec50" Publisher="CN=ericmai" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="6af1a9ce-a5b0-49d4-8215-ffc6c0e0ec50" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>UniversalScratch</DisplayName>
+    <DisplayName>Bullet Time Camera</DisplayName>
     <PublisherDisplayName>ericmai</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="UniversalScratch.App">
-      <uap:VisualElements DisplayName="UniversalScratch" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="UniversalScratch" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="Bullet Time Camera" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Bullet Time Camera" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />

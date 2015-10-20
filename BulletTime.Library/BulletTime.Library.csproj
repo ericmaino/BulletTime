@@ -113,6 +113,15 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\VideoFrameListView.cs">
+      <DependentUpon>VideoFrameListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RemoteControl\CameraClientState.cs" />
+    <Compile Include="Rendering\ImageCache.cs" />
+    <Compile Include="Rendering\ImageLoader.cs" />
+    <Compile Include="Models\MappedFrame.cs" />
+    <Compile Include="PointExtensions.cs" />
+    <Compile Include="Rendering\PointMapper.cs" />
     <Compile Include="Networking\PingUtility.cs" />
     <Compile Include="Controllers\ResolutionComparer.cs" />
     <Compile Include="Models\RemoteCameraComparer.cs" />
@@ -155,21 +164,22 @@
     <Compile Include="UI\IPropertyHost.cs" />
     <Compile Include="UI\Property.cs" />
     <Compile Include="UI\PropertyHost.cs" />
-    <Compile Include="RemoteControl\CameraClientRemoteControl.cs" />
-    <Compile Include="ViewModels\CameraClientViewModel.cs" />
+    <Compile Include="UI\StateConverter.cs" />
     <Compile Include="Models\VideoCameraModel.cs" />
     <Compile Include="Models\VideoCameraResolutionModel.cs" />
     <Compile Include="Models\CameraFrame.cs" />
     <Compile Include="RemoteControl\FrameUploader.cs" />
-    <Compile Include="ViewModels\MapCameraViewModel.cs" />
-    <Compile Include="ViewModels\MapViewModel.cs" />
     <Compile Include="Networking\NetworkCalculator.cs" />
     <Compile Include="UI\PropertyExtenions.cs" />
-    <Compile Include="ViewModels\ServerViewModel.cs" />
     <Compile Include="Networking\UploadListener.cs" />
     <Content Include="Properties\BulletTime.Library.rd.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Controls\VideoFrameListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

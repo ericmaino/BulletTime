@@ -1,5 +1,11 @@
-﻿using System;
+﻿using BulletTime.Controllers;
+using BulletTime.Models;
+using BulletTime.RemoteControl;
+using BulletTime.UI;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Devices.Enumeration;
@@ -9,10 +15,6 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
-using BulletTime.Controllers;
-using BulletTime.Models;
-using BulletTime.RemoteControl;
-using BulletTime.UI;
 
 namespace BulletTime.ViewModels
 {
@@ -69,8 +71,35 @@ namespace BulletTime.ViewModels
 
         public async void Initialize()
         {
-            Cameras.Source = await CameraController.GetCameras();
+            await DetectCameras();
             await _remote.Initialize();
+        }
+
+        private async Task DetectCameras()
+        {
+            Debug.WriteLine("Detecting Cameras");
+            if (!Dispatcher.HasThreadAccess)
+            {
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () => { await DetectCameras(); });
+                return;
+            }
+
+            if (this.SelectedCamera.Value == null)
+            {
+                var cameras = await CameraController.GetCameras();
+
+                if (!cameras.Any())
+                {
+                    var t = Task.Run(async () =>
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(2));
+                        await DetectCameras();
+
+                    });
+                };
+
+                Cameras.Source = cameras;
+            }
         }
 
         private async void SelectedCameraChanged(IProperty obj)
